@@ -20,12 +20,13 @@ public class UserRequestDTO {
     private Gender gender;
 
     public User toEntity() {
-        return User .builder()
+        return User.builder()
                 .email(email)
                 .phone(phone)
                 .password(password)
                 .username(username)
                 .profileImage(profileImage)
+                .gender(gender)
                 .build();
     }
 }

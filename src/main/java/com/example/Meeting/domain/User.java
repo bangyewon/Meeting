@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Entity(name = "user")
 @Builder
 @Getter
 @NoArgsConstructor
@@ -21,7 +21,7 @@ public class User {
     String password;
     String email;
 
-    @Column(nullable = true)
+    @Column
     String profileImage;
 
     @Column(nullable = false)
