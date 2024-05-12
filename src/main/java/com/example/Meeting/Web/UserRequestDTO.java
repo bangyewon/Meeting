@@ -12,6 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserRequestDTO {
+    private Long id; // 유저 삭제 위함
     private String username;
     private String password;
     private String email;

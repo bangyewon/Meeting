@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-
+    // 유저 생성
     public void CreateUser(UserRequestDTO userRequestDTO) throws Exception {
       User newUser = userRequestDTO.toEntity();
         //User 파라미터로 이미 있는 사용자 확인하기 ->findByUserId로
@@ -22,6 +22,11 @@ public class UserService {
         else {
             throw new Exception("이미 존재하는 유저");
         }
-
     }
+    // 유저 삭제
+    public void DeleteUser(UserRequestDTO userRequestDTO) {
+        Long userId = userRequestDTO.getId(); // UserRequestDTO에서 ID 가져오기
+        userRepository.deleteById(userId); // 해당 ID를 가진 유저 삭제
+    }
+
 }
