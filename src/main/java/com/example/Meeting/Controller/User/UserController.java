@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.io.IOException;
+
 @Controller
 @RequiredArgsConstructor
 public class UserController {
@@ -31,7 +33,7 @@ public class UserController {
 //
 //    }
     @PostMapping("/Login")
-    public ResponseEntity<String> login(@RequestBody UserLoginDTO userLoginDTO, HttpServletRequest request, HttpServletResponse response) {
+    public ResponseEntity<String> login(@RequestBody UserLoginDTO userLoginDTO, HttpServletRequest request, HttpServletResponse response) throws IOException {
         // 비밀번호,로그인 id 맞는지 확인
 //       User user =  UserService.login(userLoginDTO.getLoginId(),userLoginDTO.getPassword()); 이미 Service에서 확인함
         User user = userService.login(userLoginDTO);
@@ -41,6 +43,7 @@ public class UserController {
            session.setAttribute("user", user);
            // 응답 설정
            response.setStatus(HttpServletResponse.SC_OK);
+           response.sendRedirect("/main");  // 리디렉션 URL 설정해서 로그인 시 돌아가도록 설정
            return ResponseEntity.ok("로그인 성공");
        }else {
            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed");
