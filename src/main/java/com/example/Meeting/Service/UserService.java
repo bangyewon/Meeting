@@ -61,22 +61,21 @@ public class UserService {
     }
 
     // 로그인
-    // return String 말고 다른 방식으로 리팩토링
-    public String login(UserLoginDTO userLoginDTO) {
+    public User login(UserLoginDTO userLoginDTO) {
         Optional<User> loginUser = userRepository.findByLoginId(userLoginDTO.getLoginId());
         // 유저 일치 안하면 에러
         // 로그인유저 없으면 안됨
         if (loginUser.isEmpty()) {
-            return "로그인이 실패했습니다.";
+            return null;
         } else {
             // Optinal로 감쌌기에 추출해야함 ?
             User user = loginUser.get(); // Optional에서 사용자 객체 추출
             if(user.getPassword().equals(userLoginDTO.getPassword())) {
                 // 비번 일치 -> 로그인 성공
-                return "로그인 성공";
+                return user;
             }
             else {
-                return "비밀번호가 일치하지 않습니다.";
+                return null;
             }
         }
     }
