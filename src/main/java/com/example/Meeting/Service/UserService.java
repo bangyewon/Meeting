@@ -4,6 +4,8 @@ import com.example.Meeting.Repository.UserRepository;
 import com.example.Meeting.Web.UserLoginDTO;
 import com.example.Meeting.Web.UserRequestDTO;
 import com.example.Meeting.domain.User;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,7 @@ public class UserService {
     private final UserRepository userRepository;
 
 
-    // 유저 생성
+    // 유저 생성(회원가입)
     public void CreateUser(UserRequestDTO userRequestDTO) throws Exception {
         User newUser = userRequestDTO.toEntity();
         //User 파라미터로 이미 있는 사용자 확인하기 ->findByUserId로
@@ -78,6 +80,19 @@ public class UserService {
                 return null;
             }
         }
+    }
+    // 로그아웃
+    // boolean 말고 다른 반환타입 생각하기
+    public boolean logout(HttpServletRequest request, User user) {
+        // 로그인된 Userid 갖고오기
+        Optional<User> UserloginId = userRepository.findByLoginId(user.getEmail());
+        // session 존재할때만 ! logout 가능
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate(); // 세션 무효화
+            return true;
+        }
+            return false;
     }
 }
 
