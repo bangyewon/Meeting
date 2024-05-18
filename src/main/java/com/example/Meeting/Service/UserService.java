@@ -82,17 +82,16 @@ public class UserService {
         }
     }
     // 로그아웃
-    // boolean 말고 다른 반환타입 생각하기
-    public boolean logout(HttpServletRequest request, User user) {
+    public User logout(HttpServletRequest request, User user) {
         // 로그인된 Userid 갖고오기
         Optional<User> UserloginId = userRepository.findByLoginId(user.getEmail());
         // session 존재할때만 ! logout 가능
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate(); // 세션 무효화
-            return true;
+            return UserloginId.orElse(null); // 로그아웃한 사용자 반환
         }
-            return false;
+        return null; // logout 실패시 null
     }
 }
 
