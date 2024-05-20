@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-
 @Service
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+
 
 
     // 유저 생성(회원가입)
@@ -64,7 +64,7 @@ public class UserService {
 
     // 로그인
     public User login(UserLoginDTO userLoginDTO) {
-        Optional<User> loginUser = userRepository.findByLoginId(userLoginDTO.getLoginId());
+        Optional<User> loginUser = userRepository.findByEmail(userLoginDTO.getEmail());
         // 유저 일치 안하면 에러
         // 로그인유저 없으면 안됨
         if (loginUser.isEmpty()) {
@@ -81,10 +81,11 @@ public class UserService {
             }
         }
     }
+
     // 로그아웃
     public User logout(HttpServletRequest request, User user) {
         // 로그인된 Userid 갖고오기
-        Optional<User> UserloginId = userRepository.findByLoginId(user.getEmail());
+        Optional<User> UserloginId = userRepository.findByEmail(user.getEmail());
         // session 존재할때만 ! logout 가능
         HttpSession session = request.getSession(false);
         if (session != null) {

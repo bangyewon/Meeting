@@ -10,7 +10,7 @@ public interface UserRepository extends JpaRepository<User,Long> {
     User save(User user);
     User findUserById(Long id);
     void deleteById(Long id);
-    Optional<User> findByLoginId(String email); //못찾을 수도 있기에 Optinal
+    Optional<User> findByEmail(String email); //못찾을 수도 있기에 Optinal
 
 }
 
