@@ -1,5 +1,5 @@
 package com.example.Meeting.Repository;
-import com.example.Meeting.domain.User;
+import com.example.Meeting.domain.User.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

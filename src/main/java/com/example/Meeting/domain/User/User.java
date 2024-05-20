@@ -1,17 +1,20 @@
-package com.example.Meeting.domain;
+package com.example.Meeting.domain.User;
 
+import com.example.Meeting.domain.Image.Image;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity(name = "user")
+@Entity
 @Builder
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private Long id;
 
     @Column(nullable = false)
@@ -19,8 +22,8 @@ public class User {
     String password;
     String email;
 
-    @Column
-    String profileImage;
+    @OneToOne(mappedBy = "user",fetch = FetchType.LAZY)
+    private Image profileImage;
 
     @Column(nullable = false)
     String phone;

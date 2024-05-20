@@ -3,7 +3,7 @@ package com.example.Meeting.Service;
 import com.example.Meeting.Repository.UserRepository;
 import com.example.Meeting.Web.UserLoginDTO;
 import com.example.Meeting.Web.UserRequestDTO;
-import com.example.Meeting.domain.User;
+import com.example.Meeting.domain.User.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -55,9 +55,9 @@ public class UserService {
             // 성별 문자열을 Gender enum형으로 변환해 업데이트
             user.setGender(userRequestDTO.getGender());
         }
-        if (userRequestDTO.getProfileImage() != null) {
-            user.setProfileImage(userRequestDTO.getProfileImage());
-        }
+//        if (userRequestDTO.getProfileImage() != null) {
+//            user.setProfileImage(userRequestDTO.getProfileImage());
+//        }
         // 업데이트된 사용자 저장
         userRepository.save(user);
     }
@@ -94,6 +94,8 @@ public class UserService {
         }
         return null; // logout 실패시 null
     }
+    // 프로필 사진 업로드
+
 }
 
 
