@@ -1,7 +1,7 @@
 package com.example.Meeting.Web;
 
-import com.example.Meeting.domain.Gender;
-import com.example.Meeting.domain.User;
+import com.example.Meeting.domain.User.Gender;
+import com.example.Meeting.domain.User.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +17,7 @@ public class UserRequestDTO {
     private String password;
     private String email;
     private String phone;
-    private String profileImage;
+//    private String profileImage;
     private Gender gender;
 
     public User toEntity() {
@@ -26,7 +26,6 @@ public class UserRequestDTO {
                 .phone(phone)
                 .password(password)
                 .username(username)
-                .profileImage(profileImage)
                 .gender(gender)
                 .build();
     }
