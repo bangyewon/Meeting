@@ -25,5 +25,4 @@ public class DsException extends RuntimeException {
         this.message = message;
         this.httpStatus = httpStatus;
     }
-
 }
