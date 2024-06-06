@@ -3,6 +3,7 @@ package com.example.Meeting.domain.User;
 import com.example.Meeting.domain.Image.Image;
 import jakarta.persistence.*;
 import lombok.*;
+import java.io.Serializable;
 
 @Entity
 @Builder
@@ -11,7 +12,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "user")
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
