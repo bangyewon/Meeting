@@ -1,5 +1,6 @@
 package com.example.Meeting.domain.User;
 
+import com.example.Meeting.common.BaseEntity;
 import com.example.Meeting.domain.Image.Image;
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,7 +13,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "user")
-public class User implements Serializable {
+public class User extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
