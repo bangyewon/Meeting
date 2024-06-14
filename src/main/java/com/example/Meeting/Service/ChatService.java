@@ -1,6 +1,8 @@
 package com.example.Meeting.Service;
 
 import com.example.Meeting.domain.chat.ChatRoomVO;
+import com.example.Meeting.dto.ChatRequestDTO;
+import com.example.Meeting.dto.ChatResponseDTO;
 import com.example.Meeting.exception.DsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -31,10 +33,17 @@ public class ChatService {
     }
 
     // 채팅방 생성
-    public Boolean addChatRoom(ChatRoomVO chatRoomVO) {
+    public ChatResponseDTO.AddChatRoomDTO addChatRoom(ChatRequestDTO.AddChatRoomDTO addChatRoomDTO) {
+        ChatRoomVO chatRoomVO = new ChatRoomVO();
+        chatRoomVO.setRoomName(addChatRoomDTO.getRoomName());
+        chatRoomVO.setRoomId((long) roomList.size() + 1); // 고유 roomId 설정
         roomList.add(chatRoomVO);
-        chatRoomVO.setRoomId((long)(roomList.size())); //새로운 채팅방 개설 시 roomid를 roomList.size지정
+
+        ChatResponseDTO.AddChatRoomDTO responseDTO = new ChatResponseDTO.AddChatRoomDTO(chatRoomVO);
+        responseDTO.setRoomId(chatRoomVO.getRoomId());
+        responseDTO.setRoomName(chatRoomVO.getRoomName());
+
         System.out.println("채팅방이 생성됐습니다.");
-        return true;
+        return new ChatResponseDTO.AddChatRoomDTO(chatRoomVO);
     }
 }
