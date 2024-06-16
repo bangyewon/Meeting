@@ -2,14 +2,11 @@ package com.example.Meeting.Controller.Chat;
 
 import com.example.Meeting.Service.ChatService;
 import com.example.Meeting.common.ApiResponse;
-import com.example.Meeting.domain.chat.ChatRoomVO;
 import com.example.Meeting.dto.ChatRequestDTO;
 import com.example.Meeting.dto.ChatResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -20,8 +17,10 @@ public class ChatController {
 
     // 채팅방 목록 조회
     @GetMapping("/roomList")
-    public List<ChatRoomVO> selectRoomList() {
-        return new ArrayList<>(chatService.selectRoomList());
+  public ApiResponse<List<ChatResponseDTO.findChatRoomDTO>> findChatRoom(
+          @RequestHeader(value = "user-no", required = false)Long userId) {
+        List<ChatResponseDTO.findChatRoomDTO> result = chatService.findAllChatRoom();
+        return ApiResponse.success(result);
     }
     // 채팅방 생성
     @PostMapping("/ChatRoom")

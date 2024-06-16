@@ -18,4 +18,14 @@ public class ChatResponseDTO {
             this.roomName = chatRoomVO.getRoomName();
         }
     }
+    @Getter
+    public static class findChatRoomDTO {
+        private Long roomId;
+        private String roomName;
+
+        public findChatRoomDTO(ChatRoomVO chatRoomVO) {
+            this.roomId = chatRoomVO.getRoomId();
+            this.roomName = chatRoomVO.getRoomName();
+        }
+    }
 }
