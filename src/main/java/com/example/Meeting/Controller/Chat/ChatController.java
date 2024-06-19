@@ -16,14 +16,14 @@ public class ChatController {
     private ChatService chatService;
 
     // 채팅방 목록 조회
-    @GetMapping("/roomList")
+    @GetMapping("/roomlist")
   public ApiResponse<List<ChatResponseDTO.findChatRoomDTO>> findChatRoom(
           @RequestHeader(value = "user-no", required = false)Long userId) {
         List<ChatResponseDTO.findChatRoomDTO> result = chatService.findAllChatRoom(userId);
         return ApiResponse.success(result);
     }
     // 채팅방 생성
-    @PostMapping("/ChatRoom")
+    @PostMapping("/chatroom")
     public ApiResponse<ChatResponseDTO.AddChatRoomDTO> addChat(@RequestBody ChatRequestDTO.AddChatRoomDTO addChatRoomDTO
     , @RequestHeader(value = "user-no", required = false)Long userId) {
         ChatResponseDTO.AddChatRoomDTO result = chatService.addChatRoom(userId,addChatRoomDTO);
