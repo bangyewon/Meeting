@@ -1,6 +1,8 @@
 package com.example.Meeting.Service;
 
 import com.example.Meeting.Repository.ChatRoomRepository;
+import com.example.Meeting.Repository.UserRepository;
+import com.example.Meeting.domain.User.User;
 import com.example.Meeting.domain.chat.ChatRoomVO;
 import com.example.Meeting.dto.ChatRequestDTO;
 import com.example.Meeting.dto.ChatResponseDTO;
@@ -9,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,10 +19,13 @@ import java.util.List;
 public class ChatService {
 
     private final ChatRoomRepository chatRoomRepository;
+    private final UserRepository userRepository;
     final List<ChatResponseDTO.findChatRoomDTO> roomList = new ArrayList<>();
 
     // 채팅방 목록 조회
-    public List<ChatResponseDTO.findChatRoomDTO> findAllChatRoom() {
+    public List<ChatResponseDTO.findChatRoomDTO> findAllChatRoom(Long userId) {
+        User findUser =  userRepository.findById(userId)
+                .orElseThrow(() -> new DsException("유저를 찾을 수 없습니다.", HttpStatus.NOT_FOUND));
         List<ChatRoomVO> chatRoomList = chatRoomRepository.findAll();
         roomList.clear(); // 기존 목록을 초기화
         for (ChatRoomVO chatRoomVO : chatRoomList) {
@@ -31,8 +35,9 @@ public class ChatService {
     }
 
     // 채팅방 생성
-    public ChatResponseDTO.AddChatRoomDTO addChatRoom(ChatRequestDTO.AddChatRoomDTO addChatRoomDTO) {
-        // 유저 확인하고 생성해야할듯 리팩토링 필요
+    public ChatResponseDTO.AddChatRoomDTO addChatRoom(Long userId,ChatRequestDTO.AddChatRoomDTO addChatRoomDTO) {
+        User findUser =  userRepository.findById(userId)
+                .orElseThrow(() -> new DsException("유저를 찾을 수 없습니다.", HttpStatus.NOT_FOUND));
         ChatRoomVO chatRoomVO = new ChatRoomVO();
         chatRoomVO.setRoomName(addChatRoomDTO.getRoomName());
         chatRoomVO.setRoomId((long) roomList.size() + 1); // 고유 roomId 설정
