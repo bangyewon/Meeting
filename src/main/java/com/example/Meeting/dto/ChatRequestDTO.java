@@ -9,14 +9,14 @@ import lombok.Setter;
 @Getter
 public class ChatRequestDTO {
     @Getter
-    public static class  AddChatRoomDTO {
+    public static class AddChatRoomDTO {
         private Long roomId;
         private String roomName;
     }
     @Getter
     @Setter
     @NoArgsConstructor
-    public class ChatMessageDTO {
+    public static class ChatMessageDTO {
         public enum MessageType {
             ENTER,TALK
         }

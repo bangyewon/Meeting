@@ -16,7 +16,7 @@ public class ChatMessageService {
     private final UserRepository userRepository;
 
     @Transactional // 저장하기
-    public void save(final ChatRequestDTO.ChatMessageDTO chatMessageDTO) {
+    public void save(ChatRequestDTO.ChatMessageDTO chatMessageDTO) {
         Chat chat = chatMessageDTO.toEntity();
         chatMessageRepository.save(chat);
     }
