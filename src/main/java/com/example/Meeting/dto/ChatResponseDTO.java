@@ -18,7 +18,7 @@ public class ChatResponseDTO {
             this.roomName = chatRoomVO.getRoomName();
         }
     }
-    @Getter
+    @Getter // 채팅방 조회
     public static class findChatRoomDTO {
         private Long roomId;
         private String roomName;
@@ -26,6 +26,19 @@ public class ChatResponseDTO {
         public findChatRoomDTO(ChatRoomVO chatRoomVO) {
             this.roomId = chatRoomVO.getRoomId();
             this.roomName = chatRoomVO.getRoomName();
+        }
+    }
+    @Getter // 채팅방 내부 조회
+    public static class ChatRoomDTO {
+        private Long roomId;
+        private String userName;
+        private String msg;
+        private String messageCreatedDate;
+
+        public ChatRoomDTO(ChatRoomVO chatRoomVO, String msg,String messageCreatedDate) {
+            this.roomId = chatRoomVO.getRoomId();
+            this.msg = msg;
+            this.messageCreatedDate = messageCreatedDate;
         }
     }
 }
