@@ -32,6 +32,7 @@ dependencies {
 	implementation 'io.springfox:springfox-boot-starter:3.0.0'//Swagger
 	implementation 'javax.validation:validation-api:2.0.1.Final' //검증
 	implementation 'org.springframework.boot:spring-boot-starter-websocket' // 웹소켓
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
 }
 
 tasks.named('test') {
