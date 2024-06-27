@@ -4,16 +4,15 @@ import com.example.Meeting.Service.ChatMessageService;
 import com.example.Meeting.dto.ChatRequestDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.json.JSONException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 import org.json.JSONObject;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 
 // 메시지 핸들링하는 클래스 - 실시간 통신 구현 위해서
 @Component
@@ -22,7 +21,6 @@ import java.util.List;
 public class SocketHandler extends TextWebSocketHandler {
     List<HashMap<String, Object>> rls = new ArrayList<>(); // 웹소켓 세션 담아둘 리스트 - roomList
     private final ChatMessageService chatMessageService;
-
 
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) {
@@ -39,12 +37,25 @@ public class SocketHandler extends TextWebSocketHandler {
 
             String rN = (String) obj.get("Id"); // 방 번호 받기
             HashMap<String, Object> temp = new HashMap<String, Object>();
-            if(rls.size() > 0) {
-
+            if (rls.size() > 0) {
+                for (int i = 0; i < rls.size(); i++) {
+                    String roomNumber = (String) rls.get(i).get("Id"); // 세션리스트에 저장된 방번호 가져오기
+                    temp = rls.get(i); // 해당 방번호의 세션리스트의 존재하는 모든 obj값 가져옴
+                    // 같은 값의 방이 존재할 수 있나 ?
+                }
+                for (String k : temp.keySet()) {
+                    WebSocketSession wss = (WebSocketSession) temp.get(k);
+                    if (wss != null) {
+                        try {
+                            TextMessage textMessage = new TextMessage(obj.toString());
+                            wss.sendMessage(textMessage);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
             }
-
-        }
-        catch (JSONException ex) {
+        } catch (Exception ex) {
             log.error("Error parsing JSON: {}", ex.getMessage());
         }
     }
