@@ -13,7 +13,9 @@ public class ChatRoomVO extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long roomId;
+
+//    @Column(name = "room_id")
+//    private Long roomId;
     // 수신자
     private String user1Id;
     // 송신자

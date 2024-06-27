@@ -18,13 +18,13 @@ public class Chat extends BaseEntity {
     private String msg;
     @Column(name = "created_time")
     private String createdTime;
-    @Column(name = "room_id")
-    private Long roomId;
+//    @Column(name = "room_id")
+//    private Long roomId;
 
     @Builder
-    public  Chat(String msg,String userName,Long roomId) {
+    public  Chat(String msg,String userName,Long id) {
         this.msg = msg;
-        this.roomId = roomId;
+        this.id = id;
         this.userName = userName;
         this.createdTime = ZonedDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME);
     }

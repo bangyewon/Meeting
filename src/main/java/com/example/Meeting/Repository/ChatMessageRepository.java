@@ -9,9 +9,9 @@ import java.util.List;
 @Repository
 // 메시지 db저장
 public interface ChatMessageRepository extends JpaRepository<Chat,String> {
-    List<Chat> findByRoomId(Long roomId);
+    List<Chat> findById(Long Id);
 
-    Chat findTopByRoomIdOrderByCreatedTimeDesc(Long roomId);
+    Chat findTopByIdOrderByCreatedTimeDesc(Long Id);
 
-    List<Chat> findAllByRoomId(Long roomId);
+    List<Chat> findAllById(Long Id);
 }

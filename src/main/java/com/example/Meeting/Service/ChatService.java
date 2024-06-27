@@ -40,11 +40,11 @@ public class ChatService {
                 .orElseThrow(() -> new DsException("유저를 찾을 수 없습니다.", HttpStatus.NOT_FOUND));
         ChatRoomVO chatRoomVO = new ChatRoomVO();
         chatRoomVO.setRoomName(addChatRoomDTO.getRoomName());
-        chatRoomVO.setRoomId((long) roomList.size() + 1); // 고유 roomId 설정
+        chatRoomVO.setId((long) roomList.size() + 1); // 고유 roomId 설정
         chatRoomRepository.save(chatRoomVO);
 
         ChatResponseDTO.AddChatRoomDTO responseDTO = new ChatResponseDTO.AddChatRoomDTO(chatRoomVO);
-        responseDTO.setRoomId(chatRoomVO.getRoomId());
+        responseDTO.setId(chatRoomVO.getId());
         responseDTO.setRoomName(chatRoomVO.getRoomName());
 
         System.out.println("채팅방이 생성됐습니다.");

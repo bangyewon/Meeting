@@ -33,9 +33,15 @@ public class SocketHandler extends TextWebSocketHandler {
             ChatRequestDTO.ChatMessageDTO chatMessageDTO = ChatRequestDTO.ChatMessageDTO.builder()
                     .userName(obj.getString("userName"))
                     .msg(obj.getString("msg"))
-                    .roomId(obj.getLong("roomId"))
+                    .id(obj.getLong("Id"))
                     .build();
             chatMessageService.save(chatMessageDTO);
+
+            String rN = (String) obj.get("Id"); // 방 번호 받기
+            HashMap<String, Object> temp = new HashMap<String, Object>();
+            if(rls.size() > 0) {
+
+            }
 
         }
         catch (JSONException ex) {

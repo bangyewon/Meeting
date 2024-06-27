@@ -10,33 +10,33 @@ public class ChatResponseDTO {
     @Getter
     @Setter
     public static class AddChatRoomDTO {
-        private Long roomId;
+        private Long id;
         private String roomName;
 
         public AddChatRoomDTO(ChatRoomVO chatRoomVO) {
-            this.roomId = chatRoomVO.getRoomId();
+            this.id = chatRoomVO.getId();
             this.roomName = chatRoomVO.getRoomName();
         }
     }
     @Getter // 채팅방 조회
     public static class findChatRoomDTO {
-        private Long roomId;
+        private Long id;
         private String roomName;
 
         public findChatRoomDTO(ChatRoomVO chatRoomVO) {
-            this.roomId = chatRoomVO.getRoomId();
+            this.id = chatRoomVO.getId();
             this.roomName = chatRoomVO.getRoomName();
         }
     }
     @Getter // 채팅방 내부 조회
     public static class ChatRoomDTO {
-        private Long roomId;
+        private Long id;
         private String userName;
         private String msg;
         private String messageCreatedDate;
 
         public ChatRoomDTO(ChatRoomVO chatRoomVO, String msg,String messageCreatedDate) {
-            this.roomId = chatRoomVO.getRoomId();
+            this.id = chatRoomVO.getId();
             this.msg = msg;
             this.messageCreatedDate = messageCreatedDate;
         }

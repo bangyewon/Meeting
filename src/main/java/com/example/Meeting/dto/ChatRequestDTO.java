@@ -10,7 +10,7 @@ import lombok.Setter;
 public class ChatRequestDTO {
     @Getter
     public static class AddChatRoomDTO {
-        private Long roomId;
+        private Long id;
         private String roomName;
     }
     @Getter
@@ -22,19 +22,19 @@ public class ChatRequestDTO {
         }
         private String userName;
         private String msg;
-        private Long roomId;
+        private Long id;
 
         @Builder // 생성자
-        public ChatMessageDTO(String userName,String msg,Long roomId) {
+        public ChatMessageDTO(String userName,String msg,Long id) {
             this.msg = msg;
             this.userName = userName;
-            this.roomId = roomId;
+            this.id = id;
         }
         public Chat toEntity() {
             return Chat.builder()
                     .userName(userName)
                     .msg(msg)
-                    .roomId(roomId)
+                    .id(id)
                     .build();
 
         }
