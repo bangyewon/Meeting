@@ -22,6 +22,7 @@ public class ChatRequestDTO {
         }
         private String userName;
         private String msg;
+        private MessageType messageType;
         private Long id;
 
         @Builder // 생성자

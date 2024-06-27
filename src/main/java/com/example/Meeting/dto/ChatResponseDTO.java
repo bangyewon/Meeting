@@ -38,6 +38,7 @@ public class ChatResponseDTO {
         public ChatRoomDTO(ChatRoomVO chatRoomVO, String msg,String messageCreatedDate) {
             this.id = chatRoomVO.getId();
             this.msg = msg;
+            this.userName = getUserName();
             this.messageCreatedDate = messageCreatedDate;
         }
     }
