@@ -20,15 +20,4 @@ public class ChatMessageService {
         Chat chat = chatMessageDTO.toEntity();
         chatMessageRepository.save(chat);
     }
-//    @Transactional
-//    public List<ChatResponseDTO> findRoom(Long roomId) {
-//        List<Chat> chatList = this.chatMessageRepository.findByRoomId(roomId);
-//
-//        List<ChatResponseDTO> dtolist = new ArrayList<>();
-//        for(Chat chat : chatList) {
-//            ChatResponseDTO.ChatRoomDTO chatRoomDTO = new ChatResponseDTO.ChatRoomDTO(chat);
-//            dtolist.add(chatRoomDTO);
-//        }
-//        return dtolist;
-//    }
 }

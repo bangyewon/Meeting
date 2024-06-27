@@ -41,4 +41,21 @@ public class ChatResponseDTO {
             this.messageCreatedDate = messageCreatedDate;
         }
     }
+    //채팅방 메세지 전송
+    @Getter
+    @Setter
+    public static class SendMessageResponseDTO {
+        private Long messageId;
+        private String userName;
+        private String message;
+        private String sentDate;
+
+        public SendMessageResponseDTO(Long messageId, String userName, String message, String sentDate) {
+            this.messageId = messageId;
+            this.userName = userName;
+            this.message = message;
+            this.sentDate = sentDate;
+        }
+    }
+
 }

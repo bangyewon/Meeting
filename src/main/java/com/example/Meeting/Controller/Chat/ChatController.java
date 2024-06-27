@@ -1,5 +1,6 @@
 package com.example.Meeting.Controller.Chat;
 
+import com.example.Meeting.Service.ChatMessageService;
 import com.example.Meeting.Service.ChatService;
 import com.example.Meeting.common.ApiResponse;
 import com.example.Meeting.dto.ChatRequestDTO;
@@ -14,6 +15,7 @@ import java.util.List;
 public class ChatController {
 @Autowired
     private ChatService chatService;
+    private ChatMessageService chatMessageService;
 
     // 채팅방 목록 조회
     @GetMapping("/roomlist")
